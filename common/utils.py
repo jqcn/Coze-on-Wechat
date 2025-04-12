@@ -137,7 +137,9 @@ def parse_markdown_text(text: str) -> List[Dict]:
     # 定义正则表达式模式，匹配图片和文件链接的Markdown语法
     # (!\[.*?\]\((.*?)\)) 匹配图片: ![alt text](url)
     # (\[.*?\]\((.*?)\)) 匹配文件链接: [text](url)
-    pattern = r'(!\[.*?\]\((.*?)\)|\[.*?\]\((.*?)\))'
+    # pattern = r'(!\[.*?\]\((.*?)\)|\[.*?\]\((.*?)\))'  # ![Image2](https://example.com/image2.png)
+    pattern = r'(!\[.*?\]\(.*?)\|\[.*?\]\(.*?)\)'  #当有链接的混合文本时，会把()中的")"加入链接中，导至链接错误，取消()  ![Image2]https://example.com/image2.png
+    
     
     # 使用正则表达式分割文本
     # 这将产生一个列表，其中包含文本、完整匹配、图片URL和文件URL
